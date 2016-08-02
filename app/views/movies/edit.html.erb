@@ -1,2 +1,21 @@
-<h1>Movies#edit</h1>
-<p>Find me in app/views/movies/edit.html.erb</p>
+<h1 class='center'>Edit Movie</h1>
+<hr />
+<br />
+<br />
+<div class='row'>
+  <div class='col s4 offset-s4'>
+    <%= form_for @movie do |m| %>
+      <%= m.label :title %>
+      <%= m.text_field :title %>
+    
+      <%= m.label :genre %>
+      <%= m.text_field :genre %>
+    
+      <%= m.label :actors %>
+      <%= m.text_field :actors %>
+    
+      <%= m.submit class: "btn green lighten-2" %>
+    
+    <% end %>
+  </div>
+</div>

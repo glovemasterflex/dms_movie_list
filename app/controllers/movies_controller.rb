@@ -1,7 +1,10 @@
 class MoviesController < ApplicationController
   def index
-
-    @movies = Movie.all
+    if params[:search]
+      @movies = Movie.search(params[:search]).order("created_at DESC")
+    else
+      @movies = Movie.all
+    end
   end
 
   def show
@@ -26,7 +29,7 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = Movie.fine(params[:id])
+    @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
       redirect_to root_path
     else
@@ -42,6 +45,6 @@ class MoviesController < ApplicationController
 
   private
     def movie_params
-      params.require(:movie).permit(:title, :genre, :actor)
+      params.require(:movie).permit(:title, :genre, :actors)
     end
 end

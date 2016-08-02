@@ -1,2 +1,48 @@
-<h1>Movies#index</h1>
-<p>Find me in app/views/movies/index.html.erb</p>
+<h1 class='center'>All Movies</h1>
+<hr />
+<br />
+<br />
+
+<center><%= link_to 'Add Movie To List', new_movie_path, class: 'btn green lighten-2' %></center>
+<br />
+<br />
+
+
+<div class='row'>
+  <div class='col s4 offset-s4'>
+    <% if @movies.present? %>
+      <%= render @movies %>
+    <% else %>
+      <p>There are no movies containing the term(s) <%= params[:search] %>.</p>
+    <% end %>
+    <%= form_tag(movies_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Movies" %>
+    <%= submit_tag "Search", class: 'btn grey darken-2' %>   <%= link_to 'Show All', root_path, class: 'btn brown lighten-2'%>
+    <% end %>
+  </div>
+</div>
+<br />
+<br />
+
+
+<div class="row">
+  <% @movies.each do |m| %>
+  <div class="col s12 m6">
+    <div class="card light-blue darken-3">
+      <div class="card-content black-text">
+        <span class="card-title"><h4><%= m.title %></h4></span>
+        <ul>
+          <li><h6 class='white-text'>Genre:</h6>
+            <p><%= m.genre %></p></li>
+          <li><h6 class='white-text'>Actors/Actresses</h6>
+            <p><%= m.actors %></p></li>
+        </ul>
+      </div>
+      <div class="card-action">
+        <%= link_to 'Edit', edit_movie_path(m), class: 'btn green' %>
+        <%= link_to 'Delete', movie_path(m), method: :delete, class: 'btn red' %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
