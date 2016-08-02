@@ -28,10 +28,10 @@
 <div class="row">
   <% @movies.each do |m| %>
   <div class="col s12 m6">
-    <div class="card light-blue darken-3">
-      <div class="card-content black-text">
-        <span class="card-title"><h4><%= m.title %></h4></span>
-        <ul>
+    <div class="card medium light-blue darken-3">
+      <div class="black-text">
+        <span class="row center card-title"><h4 style='margin-bottom:-50px;'><%= m.title %></h4></span>
+        <ul class='card-content'>
           <li><h6 class='white-text'>Genre:</h6>
             <p><%= m.genre %></p></li>
           <li><h6 class='white-text'>Actors/Actresses</h6>
